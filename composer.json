@@ -39,13 +39,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\AbacatePay\\": "src/",
-            "VendorName\\AbacatePay\\Database\\Factories\\": "database/factories/"
+            "Billyfranklim\\AbacatePay\\": "src/",
+            "Billyfranklim\\AbacatePay\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\AbacatePay\\Tests\\": "tests/",
+            "Billyfranklim\\AbacatePay\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/"
         }
     },
@@ -67,10 +67,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\AbacatePay\\AbacatePayServiceProvider"
+                "Billyfranklim\\AbacatePay\\AbacatePayServiceProvider"
             ],
             "aliases": {
-                "AbacatePay": "VendorName\\AbacatePay\\Facades\\AbacatePay"
+                "AbacatePay": "Billyfranklim\\AbacatePay\\Facades\\AbacatePay"
             }
         }
     },
