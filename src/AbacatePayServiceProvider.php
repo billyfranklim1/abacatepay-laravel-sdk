@@ -1,13 +1,17 @@
 <?php
 
-namespace VendorName\AbacatePay;
+namespace Billyfranklim\AbacatePay;
 
 use Illuminate\Support\Facades\Config;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use VendorName\AbacatePay\Clients\BillingClient;
-use VendorName\AbacatePay\Clients\CustomerClient;
-use VendorName\AbacatePay\Exceptions\ConfigurationException;
+use Billyfranklim\AbacatePay\Clients\BillingClient;
+use Billyfranklim\AbacatePay\Clients\CouponClient;
+use Billyfranklim\AbacatePay\Clients\CustomerClient;
+use Billyfranklim\AbacatePay\Clients\PixQrCodeClient;
+use Billyfranklim\AbacatePay\Clients\StoreClient;
+use Billyfranklim\AbacatePay\Clients\WithdrawalClient;
+use Billyfranklim\AbacatePay\Exceptions\ConfigurationException;
 
 class AbacatePayServiceProvider extends PackageServiceProvider
 {
@@ -32,6 +36,22 @@ class AbacatePayServiceProvider extends PackageServiceProvider
 
         $this->app->bind('abacatepay.customer', function ($app) {
             return new CustomerClient($this->getToken());
+        });
+
+        $this->app->bind('abacatepay.coupon', function ($app) {
+            return new CouponClient($this->getToken());
+        });
+
+        $this->app->bind('abacatepay.pixQrCode', function ($app) {
+            return new PixQrCodeClient($this->getToken());
+        });
+
+        $this->app->bind('abacatepay.withdrawal', function ($app) {
+            return new WithdrawalClient($this->getToken());
+        });
+
+        $this->app->bind('abacatepay.store', function ($app) {
+            return new StoreClient($this->getToken());
         });
     }
 
