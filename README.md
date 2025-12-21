@@ -249,16 +249,28 @@ $qrCodeBase64 = $pixQrCode->br_code_base64; // QR Code em base64 para imagem
 $pixQrCode = AbacatePay::pixQrCode()->check('pix_123');
 
 // Verificar status
-$status = $pixQrCode->status;
+$status = $pixQrCode->status; // PENDING, PAID, EXPIRED, etc.
 ```
 
 ### Simular Pagamento (Apenas em Dev Mode)
 
+Simula o pagamento de um QR Code PIX criado no modo de desenvolvimento. Útil para testar fluxos de pagamento sem realizar transações reais.
+
 ```php
+// Simular pagamento com metadata opcional
 $pixQrCode = AbacatePay::pixQrCode()->simulatePayment('pix_123', [
-    'source' => 'test'
+    'source' => 'test',
+    'test_id' => '12345'
 ]);
+
+// Ou sem metadata
+$pixQrCode = AbacatePay::pixQrCode()->simulatePayment('pix_123');
+
+// Após simular, o status será atualizado para PAID
+echo $pixQrCode->status; // PAID
 ```
+
+**Nota:** Este método só funciona para QR Codes criados em modo de desenvolvimento (`devMode: true`).
 
 ## Loja (Store)
 
