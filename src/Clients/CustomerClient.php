@@ -1,8 +1,8 @@
 <?php
 
-namespace VendorName\AbacatePay\Clients;
+namespace Billyfranklim\AbacatePay\Clients;
 
-use VendorName\AbacatePay\Resources\Customer;
+use Billyfranklim\AbacatePay\Resources\Customer;
 use GuzzleHttp\Client as GuzzleHttpClient;
 
 class CustomerClient extends Client

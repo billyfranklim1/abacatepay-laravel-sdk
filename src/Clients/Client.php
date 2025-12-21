@@ -1,11 +1,11 @@
 <?php
 
-namespace VendorName\AbacatePay\Clients;
+namespace Billyfranklim\AbacatePay\Clients;
 
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Log;
-use VendorName\AbacatePay\Exceptions\ApiException;
+use Billyfranklim\AbacatePay\Exceptions\ApiException;
 
 class Client
 {

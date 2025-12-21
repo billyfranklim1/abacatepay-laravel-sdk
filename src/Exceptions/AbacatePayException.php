@@ -1,6 +1,6 @@
 <?php
 
-namespace VendorName\AbacatePay\Exceptions;
+namespace Billyfranklim\AbacatePay\Exceptions;
 
 use Exception;
 

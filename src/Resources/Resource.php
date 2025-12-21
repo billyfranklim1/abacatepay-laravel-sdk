@@ -1,6 +1,6 @@
 <?php
 
-namespace VendorName\AbacatePay\Resources;
+namespace Billyfranklim\AbacatePay\Resources;
 
 use DateTime;
 

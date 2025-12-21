@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\AbacatePay\Resources;
+namespace Billyfranklim\AbacatePay\Resources;
 
-use VendorName\AbacatePay\Enums\Billing\Frequencies;
-use VendorName\AbacatePay\Enums\Billing\Methods;
-use VendorName\AbacatePay\Enums\Billing\Statuses;
-use VendorName\AbacatePay\Resources\Billing\Metadata;
-use VendorName\AbacatePay\Resources\Billing\Product;
+use Billyfranklim\AbacatePay\Enums\Billing\Frequencies;
+use Billyfranklim\AbacatePay\Enums\Billing\Methods;
+use Billyfranklim\AbacatePay\Enums\Billing\Statuses;
+use Billyfranklim\AbacatePay\Resources\Billing\Metadata;
+use Billyfranklim\AbacatePay\Resources\Billing\Product;
 use DateTime;
 
 class Billing extends Resource

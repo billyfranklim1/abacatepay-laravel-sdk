@@ -1,8 +1,8 @@
 <?php
 
-namespace VendorName\AbacatePay\Resources;
+namespace Billyfranklim\AbacatePay\Resources;
 
-use VendorName\AbacatePay\Resources\Customer\Metadata;
+use Billyfranklim\AbacatePay\Resources\Customer\Metadata;
 
 class Customer extends Resource
 {
