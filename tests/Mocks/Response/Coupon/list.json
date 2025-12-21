@@ -1,0 +1,20 @@
+{
+    "error": null,
+    "data": [
+        {
+            "id": "coupon_123",
+            "code": "DESCONTO10",
+            "discountKind": "PERCENTAGE",
+            "discount": 10,
+            "maxRedeems": 100,
+            "redeemsCount": 0,
+            "status": "ACTIVE",
+            "devMode": true,
+            "notes": "Desconto de 10%",
+            "metadata": {},
+            "createdAt": "2024-12-07T22:25:54.738Z",
+            "updatedAt": "2024-12-07T22:25:54.738Z"
+        }
+    ]
+}
+

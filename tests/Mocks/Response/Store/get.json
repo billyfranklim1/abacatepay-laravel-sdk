@@ -1,0 +1,14 @@
+{
+    "error": null,
+    "data": {
+        "id": "store_123",
+        "name": "Minha Loja",
+        "email": "loja@example.com",
+        "phone": "11999999999",
+        "document": "12345678900",
+        "devMode": true,
+        "createdAt": "2024-12-07T22:25:54.738Z",
+        "updatedAt": "2024-12-07T22:25:54.738Z"
+    }
+}
+

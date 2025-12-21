@@ -40,6 +40,36 @@ function getCreateCustomerResponseClient(): Client
     return createMockClient('Customer/create');
 }
 
+function getListCouponsResponseClient(): Client
+{
+    return createMockClient('Coupon/list');
+}
+
+function getCreateCouponResponseClient(): Client
+{
+    return createMockClient('Coupon/create');
+}
+
+function getListWithdrawalsResponseClient(): Client
+{
+    return createMockClient('Withdrawal/list');
+}
+
+function getCreateWithdrawalResponseClient(): Client
+{
+    return createMockClient('Withdrawal/create');
+}
+
+function getStoreResponseClient(): Client
+{
+    return createMockClient('Store/get');
+}
+
+function getCreatePixQrCodeResponseClient(): Client
+{
+    return createMockClient('PixQrCode/create');
+}
+
 function createErrorResponseClient(int $statusCode = 400, string $message = 'Bad Request'): Client
 {
     $handler = new MockHandler();
