@@ -1,10 +1,10 @@
 <?php
 
-namespace VendorName\AbacatePay\Tests;
+namespace Billyfranklim\AbacatePay\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use VendorName\AbacatePay\AbacatePayServiceProvider;
+use Billyfranklim\AbacatePay\AbacatePayServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -13,7 +13,7 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'VendorName\\AbacatePay\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => 'Billyfranklim\\AbacatePay\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
     }
 

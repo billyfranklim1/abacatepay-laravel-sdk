@@ -1,9 +1,9 @@
 <?php
 
-use VendorName\AbacatePay\Clients\CustomerClient;
-use VendorName\AbacatePay\Exceptions\ApiException;
-use VendorName\AbacatePay\Resources\Customer;
-use VendorName\AbacatePay\Resources\Customer\Metadata;
+use Billyfranklim\AbacatePay\Clients\CustomerClient;
+use Billyfranklim\AbacatePay\Exceptions\ApiException;
+use Billyfranklim\AbacatePay\Resources\Customer;
+use Billyfranklim\AbacatePay\Resources\Customer\Metadata;
 
 test('pode listar clientes', function () {
     $mockClient = getListCustomersResponseClient();

@@ -1,10 +1,10 @@
 <?php
 
-use VendorName\AbacatePay\AbacatePay;
-use VendorName\AbacatePay\AbacatePayServiceProvider;
-use VendorName\AbacatePay\Clients\BillingClient;
-use VendorName\AbacatePay\Clients\CustomerClient;
-use VendorName\AbacatePay\Exceptions\ConfigurationException;
+use Billyfranklim\AbacatePay\AbacatePay;
+use Billyfranklim\AbacatePay\AbacatePayServiceProvider;
+use Billyfranklim\AbacatePay\Clients\BillingClient;
+use Billyfranklim\AbacatePay\Clients\CustomerClient;
+use Billyfranklim\AbacatePay\Exceptions\ConfigurationException;
 
 test('service provider registra o singleton do AbacatePay', function () {
     config()->set('abacatepay.token', 'test_token');

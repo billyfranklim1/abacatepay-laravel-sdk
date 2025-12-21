@@ -1,15 +1,15 @@
 <?php
 
-use VendorName\AbacatePay\Clients\BillingClient;
-use VendorName\AbacatePay\Enums\Billing\Frequencies;
-use VendorName\AbacatePay\Enums\Billing\Methods;
-use VendorName\AbacatePay\Enums\Billing\Statuses;
-use VendorName\AbacatePay\Exceptions\ApiException;
-use VendorName\AbacatePay\Resources\Billing;
-use VendorName\AbacatePay\Resources\Billing\Metadata as BillingMetadata;
-use VendorName\AbacatePay\Resources\Billing\Product;
-use VendorName\AbacatePay\Resources\Customer;
-use VendorName\AbacatePay\Resources\Customer\Metadata as CustomerMetadata;
+use Billyfranklim\AbacatePay\Clients\BillingClient;
+use Billyfranklim\AbacatePay\Enums\Billing\Frequencies;
+use Billyfranklim\AbacatePay\Enums\Billing\Methods;
+use Billyfranklim\AbacatePay\Enums\Billing\Statuses;
+use Billyfranklim\AbacatePay\Exceptions\ApiException;
+use Billyfranklim\AbacatePay\Resources\Billing;
+use Billyfranklim\AbacatePay\Resources\Billing\Metadata as BillingMetadata;
+use Billyfranklim\AbacatePay\Resources\Billing\Product;
+use Billyfranklim\AbacatePay\Resources\Customer;
+use Billyfranklim\AbacatePay\Resources\Customer\Metadata as CustomerMetadata;
 
 test('pode listar cobranças', function () {
     $mockClient = getListBillingsResponseClient();

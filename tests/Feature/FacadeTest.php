@@ -1,8 +1,8 @@
 <?php
 
-use VendorName\AbacatePay\Facades\AbacatePay;
-use VendorName\AbacatePay\Clients\BillingClient;
-use VendorName\AbacatePay\Clients\CustomerClient;
+use Billyfranklim\AbacatePay\Facades\AbacatePay;
+use Billyfranklim\AbacatePay\Clients\BillingClient;
+use Billyfranklim\AbacatePay\Clients\CustomerClient;
 
 test('facade retorna instância de BillingClient', function () {
     config()->set('abacatepay.token', 'test_token');
