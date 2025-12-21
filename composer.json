@@ -1,24 +1,28 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "billyfranklim/abacatepay-laravel-sdk",
+    "description": "SDK Laravel para integração com a API do AbacatePay",
     "keywords": [
-        ":vendor_name",
+        "abacatepay",
         "laravel",
-        ":package_slug"
+        "sdk",
+        "payment",
+        "pix",
+        "billing"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/billyfranklim1/abacatepay-laravel-sdk",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Billyfranklim Avelino Pereira",
+            "email": "billyfranklim@gmail.com",
             "role": "Developer"
         }
     ],
     "require": {
         "php": "^8.4",
         "spatie/laravel-package-tools": "^1.16",
-        "illuminate/contracts": "^11.0||^12.0"
+        "illuminate/contracts": "^11.0||^12.0",
+        "guzzlehttp/guzzle": "^7.9"
     },
     "require-dev": {
         "laravel/pint": "^1.14",
@@ -35,13 +39,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "VendorName\\AbacatePay\\": "src/",
+            "VendorName\\AbacatePay\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/",
+            "VendorName\\AbacatePay\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/"
         }
     },
@@ -63,10 +67,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "VendorName\\AbacatePay\\AbacatePayServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "AbacatePay": "VendorName\\AbacatePay\\Facades\\AbacatePay"
             }
         }
     },

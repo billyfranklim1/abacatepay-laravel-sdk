@@ -1,71 +1,164 @@
-# :package_description
+# AbacatePay Laravel SDK
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/:vendor_slug/:package_slug/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/:vendor_slug/:package_slug/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-<!--delete-->
----
-This repo can be used to scaffold a Laravel package. Follow these steps to get started:
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/billyfranklim/abacatepay-laravel-sdk.svg?style=flat-square)](https://packagist.org/packages/billyfranklim/abacatepay-laravel-sdk)
+[![Total Downloads](https://img.shields.io/packagist/dt/billyfranklim/abacatepay-laravel-sdk.svg?style=flat-square)](https://packagist.org/packages/billyfranklim/abacatepay-laravel-sdk)
 
-1. Press the "Use this template" button at the top of this repo to create a new repo with the contents of this skeleton.
-2. Run "php ./configure.php" to run a script that will replace all placeholders throughout all the files.
-3. Have fun creating your package.
-4. If you need help creating a package, consider picking up our <a href="https://laravelpackage.training">Laravel Package Training</a> video course.
----
-<!--/delete-->
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+SDK Laravel para integração com a API do AbacatePay. Este pacote fornece uma interface simples e elegante para gerenciar clientes e cobranças através da API do AbacatePay.
 
-## Support us
+## Requisitos
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/:package_name.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/:package_name)
+- PHP 8.4 ou superior
+- Laravel 11 ou 12
+- Token da API AbacatePay
 
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
+## Instalação
 
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
-
-## Installation
-
-You can install the package via composer:
+Você pode instalar o pacote via Composer:
 
 ```bash
-composer require :vendor_slug/:package_slug
+composer require billyfranklim/abacatepay-laravel-sdk
 ```
 
-You can publish and run the migrations with:
+## Configuração
+
+Publique o arquivo de configuração:
 
 ```bash
-php artisan vendor:publish --tag=":package_slug-migrations"
-php artisan migrate
+php artisan vendor:publish --tag="abacatepay-config"
 ```
 
-You can publish the config file with:
+Adicione seu token da API no arquivo `.env`:
 
-```bash
-php artisan vendor:publish --tag=":package_slug-config"
+```env
+ABACATEPAY_TOKEN=seu_token_aqui
 ```
 
-This is the contents of the published config file:
+Opcionalmente, você pode configurar a URL base da API:
+
+```env
+ABACATEPAY_BASE_URI=https://api.abacatepay.com/v1
+```
+
+## Uso
+
+### Via Facade
 
 ```php
-return [
-];
+use VendorName\AbacatePay\Facades\AbacatePay;
+use VendorName\AbacatePay\Resources\Billing;
+use VendorName\AbacatePay\Resources\Billing\Product;
+use VendorName\AbacatePay\Resources\Billing\Metadata as BillingMetadata;
+use VendorName\AbacatePay\Enums\Billing\Frequencies;
+use VendorName\AbacatePay\Enums\Billing\Methods;
+use VendorName\AbacatePay\Resources\Customer;
+use VendorName\AbacatePay\Resources\Customer\Metadata as CustomerMetadata;
+
+// Criar uma cobrança
+$billing = AbacatePay::billing()->create(new Billing([
+    'frequency' => Frequencies::ONE_TIME,
+    'methods' => [Methods::PIX],
+    'products' => [
+        new Product([
+            'external_id' => 'prod_123',
+            'name' => 'Produto A',
+            'description' => 'Descrição do produto',
+            'quantity' => 1,
+            'price' => 10000 // em centavos
+        ])
+    ],
+    'metadata' => new BillingMetadata([
+        'return_url' => 'https://seusite.com/retorno',
+        'completion_url' => 'https://seusite.com/sucesso'
+    ]),
+    'customer' => new Customer([
+        'metadata' => new CustomerMetadata([
+            'name' => 'João Silva',
+            'cellphone' => '01912341234',
+            'email' => 'joao@example.com',
+            'tax_id' => '12345678900'
+        ])
+    ])
+]));
+
+// Listar cobranças
+$billings = AbacatePay::billing()->list();
+
+// Criar cliente
+$customer = AbacatePay::customer()->create(new Customer([
+    'metadata' => new CustomerMetadata([
+        'name' => 'Maria Santos',
+        'cellphone' => '01998765432',
+        'email' => 'maria@example.com',
+        'tax_id' => '98765432100'
+    ])
+]));
+
+// Listar clientes
+$customers = AbacatePay::customer()->list();
 ```
 
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag=":package_slug-views"
-```
-
-## Usage
+### Via Container
 
 ```php
-$variable = new VendorName\Skeleton();
-echo $variable->echoPhrase('Hello, VendorName!');
+use VendorName\AbacatePay\Clients\BillingClient;
+
+$billingClient = app('abacatepay.billing');
+$billings = $billingClient->list();
 ```
 
-## Testing
+### Via Injeção de Dependência
+
+```php
+use VendorName\AbacatePay\AbacatePay;
+
+class PaymentController
+{
+    public function __construct(
+        private AbacatePay $abacatePay
+    ) {}
+
+    public function createBilling()
+    {
+        $billing = $this->abacatePay->billing()->create($billingData);
+        // ...
+    }
+}
+```
+
+## Tratamento de Erros
+
+O pacote lança exceções específicas que você pode capturar:
+
+```php
+use VendorName\AbacatePay\Exceptions\ApiException;
+use VendorName\AbacatePay\Exceptions\ConfigurationException;
+
+try {
+    $billing = AbacatePay::billing()->create($billingData);
+} catch (ConfigurationException $e) {
+    // Token não configurado
+    logger()->error($e->getMessage());
+} catch (ApiException $e) {
+    // Erro na API
+    logger()->error('Erro na API AbacatePay', [
+        'message' => $e->getMessage(),
+        'code' => $e->getCode()
+    ]);
+}
+```
+
+## Recursos
+
+- ✅ Gerenciamento de cobranças (criar, listar)
+- ✅ Gerenciamento de clientes (criar, listar)
+- ✅ Suporte a múltiplos métodos de pagamento (PIX)
+- ✅ Suporte a cobranças únicas e recorrentes
+- ✅ Tratamento de erros robusto
+- ✅ Logging integrado
+- ✅ Type hints completos
+- ✅ Exceções customizadas
+
+## Testes
 
 ```bash
 composer test
@@ -73,21 +166,21 @@ composer test
 
 ## Changelog
 
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+Por favor, veja [CHANGELOG](CHANGELOG.md) para mais informações sobre mudanças recentes.
 
-## Contributing
+## Contribuindo
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+Contribuições são bem-vindas! Por favor, veja [CONTRIBUTING](CONTRIBUTING.md) para detalhes.
 
-## Security Vulnerabilities
+## Segurança
 
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
+Se você descobrir alguma vulnerabilidade de segurança, por favor envie um email para billyfranklim@gmail.com ao invés de usar o issue tracker.
 
-## Credits
+## Créditos
 
-- [:author_name](https://github.com/:author_username)
-- [All Contributors](../../contributors)
+- [Billyfranklim Avelino Pereira](https://github.com/billyfranklim1)
+- [Todos os Contribuidores](../../contributors)
 
-## License
+## Licença
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+A Licença MIT (MIT). Por favor, veja [Arquivo de Licença](LICENSE.md) para mais informações.
