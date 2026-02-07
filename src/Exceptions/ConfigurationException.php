@@ -9,5 +9,3 @@ class ConfigurationException extends AbacatePayException
         return new self('ABACATEPAY_TOKEN não configurado. Defina no arquivo .env');
     }
 }
-
-

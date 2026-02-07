@@ -17,8 +17,8 @@ test('coupon create envia parâmetros corretos', function () {
     $handler = new MockHandler([
         new Response(200, [], json_encode([
             'error' => null,
-            'data' => ['id' => 'coupon_123']
-        ]))
+            'data' => ['id' => 'coupon_123'],
+        ])),
     ]);
 
     $handlerStack = HandlerStack::create($handler);
@@ -27,6 +27,7 @@ test('coupon create envia parâmetros corretos', function () {
             $requestMethod = $request->getMethod();
             $requestUri = (string) $request->getUri();
             $requestBody = json_decode($request->getBody()->getContents(), true);
+
             return $handler($request, $options);
         };
     });
@@ -59,8 +60,8 @@ test('coupon list chama endpoint correto', function () {
     $handler = new MockHandler([
         new Response(200, [], json_encode([
             'error' => null,
-            'data' => []
-        ]))
+            'data' => [],
+        ])),
     ]);
 
     $handlerStack = HandlerStack::create($handler);
@@ -68,6 +69,7 @@ test('coupon list chama endpoint correto', function () {
         return function (RequestInterface $request, array $options) use ($handler, &$requestUri, &$requestMethod) {
             $requestMethod = $request->getMethod();
             $requestUri = (string) $request->getUri();
+
             return $handler($request, $options);
         };
     });
@@ -80,4 +82,3 @@ test('coupon list chama endpoint correto', function () {
     expect($requestMethod)->toBe('GET')
         ->and($requestUri)->toContain('list');
 });
-

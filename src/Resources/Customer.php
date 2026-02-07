@@ -7,6 +7,7 @@ use Billyfranklim\AbacatePay\Resources\Customer\Metadata;
 class Customer extends Resource
 {
     public ?string $id;
+
     public ?Metadata $metadata;
 
     public function __construct(array $data)
@@ -20,7 +21,7 @@ class Customer extends Resource
     {
         $name = $this->__camelToSnakeCase($name);
 
-        if (!property_exists($this, $name)) {
+        if (! property_exists($this, $name)) {
             return;
         }
 
@@ -41,5 +42,3 @@ class Customer extends Resource
         }
     }
 }
-
-

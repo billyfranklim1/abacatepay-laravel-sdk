@@ -9,16 +9,27 @@ use DateTime;
 class Coupon extends Resource
 {
     public ?string $id;
+
     public ?string $code;
+
     public ?DiscountKind $discount_kind;
+
     public ?int $discount;
+
     public ?int $max_redeems;
+
     public ?int $redeems_count;
+
     public ?Status $status;
+
     public ?bool $dev_mode;
+
     public ?string $notes;
+
     public ?array $metadata;
+
     public ?DateTime $created_at;
+
     public ?DateTime $updated_at;
 
     public function __construct(array $data)
@@ -32,7 +43,7 @@ class Coupon extends Resource
     {
         $name = $this->__camelToSnakeCase($name);
 
-        if (!property_exists($this, $name)) {
+        if (! property_exists($this, $name)) {
             return;
         }
 
@@ -58,5 +69,3 @@ class Coupon extends Resource
         }
     }
 }
-
-

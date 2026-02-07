@@ -12,18 +12,31 @@ use DateTime;
 class Billing extends Resource
 {
     public ?string $id;
+
     public ?string $account_id;
+
     public ?string $url;
+
     public ?array $methods;
+
     public ?array $products;
+
     public ?bool $dev_mode;
+
     public ?int $amount;
+
     public ?Metadata $metadata;
+
     public ?Frequencies $frequency;
+
     public ?Statuses $status;
+
     public ?Customer $customer;
+
     public ?DateTime $next_billing;
+
     public ?DateTime $created_at;
+
     public ?DateTime $updated_at;
 
     public function __construct(array $data)
@@ -37,7 +50,7 @@ class Billing extends Resource
     {
         $name = $this->__camelToSnakeCase($name);
 
-        if (!property_exists($this, $name)) {
+        if (! property_exists($this, $name)) {
             return;
         }
 
@@ -64,18 +77,19 @@ class Billing extends Resource
             case 'customer':
                 return $this->__initializeResource(Customer::class, $value);
             case 'products':
-                if (!is_array($value) || empty($value)) {
+                if (! is_array($value) || empty($value)) {
                     return $value;
                 }
-                return array_map(fn($product) => $this->__initializeResource(Product::class, $product), $value);
+
+                return array_map(fn ($product) => $this->__initializeResource(Product::class, $product), $value);
             case 'methods':
-                if (!is_array($value) || empty($value)) {
+                if (! is_array($value) || empty($value)) {
                     return $value;
                 }
-                return array_map(fn($method) => $this->__initializeEnum(Methods::class, $method), $value);
+
+                return array_map(fn ($method) => $this->__initializeEnum(Methods::class, $method), $value);
             default:
                 return $value;
         }
     }
 }
-

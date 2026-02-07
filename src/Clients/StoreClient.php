@@ -13,12 +13,11 @@ class StoreClient extends Client
     {
         parent::__construct(self::URI, $token, $client);
     }
-    
+
     public function get(): Store
     {
-        $response = $this->request("GET", "get");
+        $response = $this->request('GET', 'get');
+
         return new Store($response);
     }
 }
-
-

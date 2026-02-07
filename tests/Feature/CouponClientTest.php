@@ -36,7 +36,7 @@ test('pode criar um cupom', function () {
         'discount_kind' => DiscountKind::PERCENTAGE,
         'discount' => 10,
         'max_redeems' => 100,
-        'notes' => 'Desconto de 10% para novos clientes'
+        'notes' => 'Desconto de 10% para novos clientes',
     ]);
 
     $createdCoupon = $couponClient->create($coupon);
@@ -61,8 +61,6 @@ test('lança exceção quando a API retorna erro', function () {
     $mockClient = createErrorResponseClient(400, 'Invalid request');
     $couponClient = new CouponClient('test_token', $mockClient);
 
-    expect(fn() => $couponClient->list())
+    expect(fn () => $couponClient->list())
         ->toThrow(ApiException::class, 'AbacatePay API Error');
 });
-
-

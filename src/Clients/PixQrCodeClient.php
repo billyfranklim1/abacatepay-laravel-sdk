@@ -34,8 +34,8 @@ class PixQrCodeClient extends Client
             $requestData['customer'] = $data['customer'];
         }
 
-        $response = $this->request("POST", "create", [
-            'json' => $requestData
+        $response = $this->request('POST', 'create', [
+            'json' => $requestData,
         ]);
 
         return new PixQrCode($response);
@@ -43,14 +43,15 @@ class PixQrCodeClient extends Client
 
     public function check(string $pixQrCodeId): PixQrCode
     {
-        $response = $this->request("GET", "check?id={$pixQrCodeId}");
+        $response = $this->request('GET', "check?id={$pixQrCodeId}");
+
         return new PixQrCode($response);
     }
 
     public function simulatePayment(string $pixQrCodeId, array $metadata = []): PixQrCode
     {
-        $response = $this->request("POST", "simulate-payment?id={$pixQrCodeId}", [
-            'json' => ['metadata' => $metadata]
+        $response = $this->request('POST', "simulate-payment?id={$pixQrCodeId}", [
+            'json' => ['metadata' => $metadata],
         ]);
 
         return new PixQrCode($response);

@@ -13,29 +13,29 @@ class CustomerClient extends Client
     {
         parent::__construct(self::URI, $token, $client);
     }
-    
+
     public function list(): array
     {
-        $response = $this->request("GET", "list");
-        return array_map(fn($data) => new Customer($data), $response);
+        $response = $this->request('GET', 'list');
+
+        return array_map(fn ($data) => new Customer($data), $response);
     }
 
     public function create(Customer $data): Customer
     {
-        if (!isset($data->metadata)) {
+        if (! isset($data->metadata)) {
             throw new \InvalidArgumentException('Customer metadata is required');
         }
 
-        $response = $this->request("POST", "create", [
+        $response = $this->request('POST', 'create', [
             'json' => [
                 'name' => $data->metadata->name,
                 'email' => $data->metadata->email,
                 'cellphone' => $data->metadata->cellphone,
-                'taxId' => $data->metadata->tax_id
-            ]
+                'taxId' => $data->metadata->tax_id,
+            ],
         ]);
 
         return new Customer($response);
     }
 }
-

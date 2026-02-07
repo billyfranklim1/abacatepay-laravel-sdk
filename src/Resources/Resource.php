@@ -8,7 +8,7 @@ class Resource
 {
     protected function __initializeDateTime(string|DateTime $value): ?DateTime
     {
-        if (!$value) {
+        if (! $value) {
             return null;
         }
 
@@ -41,8 +41,8 @@ class Resource
     {
         foreach ($data as $name => $value) {
             $name = $this->__camelToSnakeCase($name);
-            
-            if (!property_exists($class, $name)) {
+
+            if (! property_exists($class, $name)) {
                 continue;
             }
 
@@ -54,8 +54,7 @@ class Resource
     {
         $snake = preg_replace('/([a-z0-9])([A-Z])/', '$1_$2', $input);
         $snake = preg_replace('/([A-Z])([A-Z][a-z])/', '$1_$2', $snake);
+
         return strtolower($snake);
     }
 }
-
-

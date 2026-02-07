@@ -2,10 +2,10 @@
 
 namespace Billyfranklim\AbacatePay\Clients;
 
+use Billyfranklim\AbacatePay\Exceptions\ApiException;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Log;
-use Billyfranklim\AbacatePay\Exceptions\ApiException;
 
 class Client
 {
@@ -18,13 +18,13 @@ class Client
     public function __construct(string $uri, string $token, ?GuzzleHttpClient $client = null)
     {
         $this->token = $token;
-        
+
         $this->client = $client ?? new GuzzleHttpClient([
-            'base_uri' => self::BASE_URI . "/" . $uri . "/",
+            'base_uri' => self::BASE_URI.'/'.$uri.'/',
             'headers' => [
                 'Content-Type' => 'application/json',
-                'Authorization' => 'Bearer ' . $this->token
-            ]
+                'Authorization' => 'Bearer '.$this->token,
+            ],
         ]);
     }
 
@@ -33,11 +33,11 @@ class Client
         try {
             $response = $this->client->request($method, $uri, $options);
             $body = json_decode($response->getBody()->getContents(), true);
-            
+
             return $body['data'] ?? [];
         } catch (RequestException $e) {
             $errorMessage = $this->extractErrorMessage($e);
-            
+
             Log::error('AbacatePay API Request Failed', [
                 'method' => $method,
                 'uri' => $uri,
@@ -59,16 +59,16 @@ class Client
 
     protected function extractErrorMessage(RequestException $e): string
     {
-        if (!$e->hasResponse()) {
+        if (! $e->hasResponse()) {
             return $e->getMessage();
         }
 
         try {
             $errorResponse = json_decode($e->getResponse()->getBody()->getContents(), true);
+
             return $errorResponse['message'] ?? $errorResponse['error'] ?? $e->getMessage();
         } catch (\Throwable) {
             return $e->getMessage();
         }
     }
 }
-

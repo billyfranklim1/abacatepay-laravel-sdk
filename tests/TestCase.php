@@ -2,9 +2,9 @@
 
 namespace Billyfranklim\AbacatePay\Tests;
 
+use Billyfranklim\AbacatePay\AbacatePayServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Billyfranklim\AbacatePay\AbacatePayServiceProvider;
 
 class TestCase extends Orchestra
 {

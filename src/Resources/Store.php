@@ -7,12 +7,19 @@ use DateTime;
 class Store extends Resource
 {
     public ?string $id;
+
     public ?string $name;
+
     public ?string $email;
+
     public ?string $phone;
+
     public ?string $document;
+
     public ?bool $dev_mode;
+
     public ?DateTime $created_at;
+
     public ?DateTime $updated_at;
 
     public function __construct(array $data)
@@ -26,7 +33,7 @@ class Store extends Resource
     {
         $name = $this->__camelToSnakeCase($name);
 
-        if (!property_exists($this, $name)) {
+        if (! property_exists($this, $name)) {
             return;
         }
 
@@ -48,5 +55,3 @@ class Store extends Resource
         }
     }
 }
-
-

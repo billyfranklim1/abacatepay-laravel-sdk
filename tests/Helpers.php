@@ -6,17 +6,17 @@ use GuzzleHttp\Psr7\Response;
 
 function createMockClient(string $responseFilePath): Client
 {
-    $handler = new MockHandler();
+    $handler = new MockHandler;
 
     $handler->append(
         new Response(
             status: 200,
-            body: file_get_contents(__DIR__ . '/Mocks/Response/' . $responseFilePath . '.json')
+            body: file_get_contents(__DIR__.'/Mocks/Response/'.$responseFilePath.'.json')
         )
     );
 
     return new Client([
-        'handler' => $handler
+        'handler' => $handler,
     ]);
 }
 
@@ -72,7 +72,7 @@ function getCreatePixQrCodeResponseClient(): Client
 
 function createErrorResponseClient(int $statusCode = 400, string $message = 'Bad Request'): Client
 {
-    $handler = new MockHandler();
+    $handler = new MockHandler;
 
     $handler->append(
         new \GuzzleHttp\Exception\RequestException(
@@ -82,14 +82,13 @@ function createErrorResponseClient(int $statusCode = 400, string $message = 'Bad
                 status: $statusCode,
                 body: json_encode([
                     'error' => $message,
-                    'message' => $message
+                    'message' => $message,
                 ])
             )
         )
     );
 
     return new Client([
-        'handler' => $handler
+        'handler' => $handler,
     ]);
 }
-

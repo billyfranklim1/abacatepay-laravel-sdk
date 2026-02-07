@@ -13,22 +13,24 @@ class WithdrawalClient extends Client
     {
         parent::__construct(self::URI, $token, $client);
     }
-    
+
     public function list(): array
     {
-        $response = $this->request("GET", "list");
-        return array_map(fn($data) => new Withdrawal($data), $response);
+        $response = $this->request('GET', 'list');
+
+        return array_map(fn ($data) => new Withdrawal($data), $response);
     }
 
     public function get(string $withdrawalId): Withdrawal
     {
-        $response = $this->request("GET", "get?id={$withdrawalId}");
+        $response = $this->request('GET', "get?id={$withdrawalId}");
+
         return new Withdrawal($response);
     }
 
     public function create(Withdrawal $data): Withdrawal
     {
-        if (!isset($data->bank_account)) {
+        if (! isset($data->bank_account)) {
             throw new \InvalidArgumentException('Bank account is required');
         }
 
@@ -40,16 +42,14 @@ class WithdrawalClient extends Client
                 'account' => $data->bank_account->account,
                 'accountType' => $data->bank_account->account_type?->value,
                 'holderName' => $data->bank_account->holder_name,
-                'holderDocument' => $data->bank_account->holder_document
-            ]
+                'holderDocument' => $data->bank_account->holder_document,
+            ],
         ];
 
-        $response = $this->request("POST", "create", [
-            'json' => $requestData
+        $response = $this->request('POST', 'create', [
+            'json' => $requestData,
         ]);
 
         return new Withdrawal($response);
     }
 }
-
-

@@ -17,8 +17,8 @@ test('customer create envia parâmetros corretos', function () {
     $handler = new MockHandler([
         new Response(200, [], json_encode([
             'error' => null,
-            'data' => ['id' => 'cust_123']
-        ]))
+            'data' => ['id' => 'cust_123'],
+        ])),
     ]);
 
     $handlerStack = HandlerStack::create($handler);
@@ -27,6 +27,7 @@ test('customer create envia parâmetros corretos', function () {
             $requestMethod = $request->getMethod();
             $requestUri = (string) $request->getUri();
             $requestBody = json_decode($request->getBody()->getContents(), true);
+
             return $handler($request, $options);
         };
     });
@@ -39,8 +40,8 @@ test('customer create envia parâmetros corretos', function () {
             'name' => 'Test Customer',
             'email' => 'test@example.com',
             'cellphone' => '1234567890',
-            'tax_id' => '12345678900'
-        ])
+            'tax_id' => '12345678900',
+        ]),
     ]);
 
     $customerClient->create($customer);
@@ -64,8 +65,8 @@ test('customer list chama endpoint correto', function () {
     $handler = new MockHandler([
         new Response(200, [], json_encode([
             'error' => null,
-            'data' => []
-        ]))
+            'data' => [],
+        ])),
     ]);
 
     $handlerStack = HandlerStack::create($handler);
@@ -73,6 +74,7 @@ test('customer list chama endpoint correto', function () {
         return function (RequestInterface $request, array $options) use ($handler, &$requestUri, &$requestMethod) {
             $requestMethod = $request->getMethod();
             $requestUri = (string) $request->getUri();
+
             return $handler($request, $options);
         };
     });
@@ -85,4 +87,3 @@ test('customer list chama endpoint correto', function () {
     expect($requestMethod)->toBe('GET')
         ->and($requestUri)->toContain('list');
 });
-

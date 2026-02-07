@@ -18,8 +18,8 @@ test('withdrawal create envia parâmetros corretos', function () {
     $handler = new MockHandler([
         new Response(200, [], json_encode([
             'error' => null,
-            'data' => ['id' => 'withdrawal_123']
-        ]))
+            'data' => ['id' => 'withdrawal_123'],
+        ])),
     ]);
 
     $handlerStack = HandlerStack::create($handler);
@@ -28,6 +28,7 @@ test('withdrawal create envia parâmetros corretos', function () {
             $requestMethod = $request->getMethod();
             $requestUri = (string) $request->getUri();
             $requestBody = json_decode($request->getBody()->getContents(), true);
+
             return $handler($request, $options);
         };
     });
@@ -43,8 +44,8 @@ test('withdrawal create envia parâmetros corretos', function () {
             'account' => '12345678',
             'account_type' => AccountType::CHECKING,
             'holder_name' => 'João da Silva',
-            'holder_document' => '12345678900'
-        ])
+            'holder_document' => '12345678900',
+        ]),
     ]);
 
     $withdrawalClient->create($withdrawal);
@@ -75,8 +76,8 @@ test('withdrawal get chama endpoint correto com query parameter', function () {
     $handler = new MockHandler([
         new Response(200, [], json_encode([
             'error' => null,
-            'data' => ['id' => 'withdrawal_123']
-        ]))
+            'data' => ['id' => 'withdrawal_123'],
+        ])),
     ]);
 
     $handlerStack = HandlerStack::create($handler);
@@ -84,6 +85,7 @@ test('withdrawal get chama endpoint correto com query parameter', function () {
         return function (RequestInterface $request, array $options) use ($handler, &$requestUri, &$requestMethod) {
             $requestMethod = $request->getMethod();
             $requestUri = (string) $request->getUri();
+
             return $handler($request, $options);
         };
     });
@@ -105,8 +107,8 @@ test('withdrawal list chama endpoint correto', function () {
     $handler = new MockHandler([
         new Response(200, [], json_encode([
             'error' => null,
-            'data' => []
-        ]))
+            'data' => [],
+        ])),
     ]);
 
     $handlerStack = HandlerStack::create($handler);
@@ -114,6 +116,7 @@ test('withdrawal list chama endpoint correto', function () {
         return function (RequestInterface $request, array $options) use ($handler, &$requestUri, &$requestMethod) {
             $requestMethod = $request->getMethod();
             $requestUri = (string) $request->getUri();
+
             return $handler($request, $options);
         };
     });
@@ -126,4 +129,3 @@ test('withdrawal list chama endpoint correto', function () {
     expect($requestMethod)->toBe('GET')
         ->and($requestUri)->toContain('list');
 });
-

@@ -45,21 +45,21 @@ test('pode criar uma cobrança com novo cliente', function () {
                 'name' => 'Abacate',
                 'description' => 'Abacate maduro',
                 'quantity' => 1,
-                'price' => 100
-            ])
+                'price' => 100,
+            ]),
         ],
         'metadata' => new BillingMetadata([
             'return_url' => 'https://www.abacatepay.com',
-            'completion_url' => 'https://www.abacatepay.com'
+            'completion_url' => 'https://www.abacatepay.com',
         ]),
         'customer' => new Customer([
             'metadata' => new CustomerMetadata([
                 'name' => 'Abacate Lover',
                 'cellphone' => '01912341234',
                 'email' => 'lover@abacate.com',
-                'tax_id' => '13827826837'
-            ])
-        ])
+                'tax_id' => '13827826837',
+            ]),
+        ]),
     ]);
 
     $createdBilling = $billingClient->create($billing);
@@ -91,16 +91,16 @@ test('pode criar uma cobrança com cliente existente', function () {
                 'name' => 'Abacate',
                 'description' => 'Abacate maduro',
                 'quantity' => 1,
-                'price' => 100
-            ])
+                'price' => 100,
+            ]),
         ],
         'metadata' => new BillingMetadata([
             'return_url' => 'https://www.abacatepay.com',
-            'completion_url' => 'https://www.abacatepay.com'
+            'completion_url' => 'https://www.abacatepay.com',
         ]),
         'customer' => new Customer([
-            'id' => 'cust_existing_123'
-        ])
+            'id' => 'cust_existing_123',
+        ]),
     ]);
 
     $createdBilling = $billingClient->create($billing);
@@ -115,8 +115,6 @@ test('lança exceção quando a API retorna erro', function () {
     $mockClient = createErrorResponseClient(400, 'Invalid request');
     $billingClient = new BillingClient('test_token', $mockClient);
 
-    expect(fn() => $billingClient->list())
+    expect(fn () => $billingClient->list())
         ->toThrow(ApiException::class, 'AbacatePay API Error');
 });
-
-

@@ -11,5 +11,3 @@ class AbacatePay extends Facade
         return \Billyfranklim\AbacatePay\AbacatePay::class;
     }
 }
-
-

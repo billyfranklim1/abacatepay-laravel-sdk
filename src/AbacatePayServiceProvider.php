@@ -2,9 +2,6 @@
 
 namespace Billyfranklim\AbacatePay;
 
-use Illuminate\Support\Facades\Config;
-use Spatie\LaravelPackageTools\Package;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Billyfranklim\AbacatePay\Clients\BillingClient;
 use Billyfranklim\AbacatePay\Clients\CouponClient;
 use Billyfranklim\AbacatePay\Clients\CustomerClient;
@@ -12,6 +9,9 @@ use Billyfranklim\AbacatePay\Clients\PixQrCodeClient;
 use Billyfranklim\AbacatePay\Clients\StoreClient;
 use Billyfranklim\AbacatePay\Clients\WithdrawalClient;
 use Billyfranklim\AbacatePay\Exceptions\ConfigurationException;
+use Illuminate\Support\Facades\Config;
+use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class AbacatePayServiceProvider extends PackageServiceProvider
 {
@@ -58,7 +58,7 @@ class AbacatePayServiceProvider extends PackageServiceProvider
     protected function getToken(): string
     {
         $token = Config::get('abacatepay.token');
-        
+
         if (empty($token)) {
             throw ConfigurationException::tokenNotConfigured();
         }
@@ -66,4 +66,3 @@ class AbacatePayServiceProvider extends PackageServiceProvider
         return $token;
     }
 }
-

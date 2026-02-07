@@ -54,7 +54,7 @@ test('lança exceção quando token não está configurado', function () {
     $provider = new AbacatePayServiceProvider($app);
     $provider->register();
 
-    expect(fn() => $app->make(AbacatePay::class))
+    expect(fn () => $app->make(AbacatePay::class))
         ->toThrow(ConfigurationException::class, 'ABACATEPAY_TOKEN não configurado');
 });
 
@@ -65,7 +65,6 @@ test('lança exceção quando token está vazio', function () {
     $provider = new AbacatePayServiceProvider($app);
     $provider->register();
 
-    expect(fn() => $app->make(AbacatePay::class))
+    expect(fn () => $app->make(AbacatePay::class))
         ->toThrow(ConfigurationException::class, 'ABACATEPAY_TOKEN não configurado');
 });
-
