@@ -49,3 +49,4 @@ class Store extends Resource
     }
 }
 
+

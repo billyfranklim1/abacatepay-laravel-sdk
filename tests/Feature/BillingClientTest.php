@@ -119,3 +119,4 @@ test('lança exceção quando a API retorna erro', function () {
         ->toThrow(ApiException::class, 'AbacatePay API Error');
 });
 
+

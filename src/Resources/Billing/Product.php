@@ -19,3 +19,4 @@ class Product extends Resource
     }
 }
 
+

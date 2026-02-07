@@ -36,3 +36,4 @@ test('facade retorna novas instâncias a cada chamada', function () {
         ->toBeInstanceOf(BillingClient::class);
 });
 
+

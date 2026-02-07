@@ -59,3 +59,4 @@ class Coupon extends Resource
     }
 }
 
+

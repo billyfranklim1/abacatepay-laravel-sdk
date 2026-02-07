@@ -10,3 +10,4 @@ class ApiException extends AbacatePayException
     }
 }
 
+

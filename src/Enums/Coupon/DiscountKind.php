@@ -8,3 +8,4 @@ enum DiscountKind: string
     case FIXED = "FIXED";
 }
 
+

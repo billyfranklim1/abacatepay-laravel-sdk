@@ -37,3 +37,4 @@ test('pode criar link de cobrança sem cliente obrigatório', function () {
         ->toBe('bill_YcxMCe4Fq0wJEcnP5gLPq0Yc');
 });
 
+
