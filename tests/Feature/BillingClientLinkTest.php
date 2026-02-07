@@ -20,13 +20,13 @@ test('pode criar link de cobrança sem cliente obrigatório', function () {
                 'name' => 'Produto',
                 'description' => 'Descrição',
                 'quantity' => 1,
-                'price' => 100
-            ])
+                'price' => 100,
+            ]),
         ],
         'metadata' => new BillingMetadata([
             'return_url' => 'https://www.abacatepay.com',
-            'completion_url' => 'https://www.abacatepay.com'
-        ])
+            'completion_url' => 'https://www.abacatepay.com',
+        ]),
     ]);
 
     $createdBilling = $billingClient->createLink($billing);
@@ -36,4 +36,3 @@ test('pode criar link de cobrança sem cliente obrigatório', function () {
         ->and($createdBilling->id)
         ->toBe('bill_YcxMCe4Fq0wJEcnP5gLPq0Yc');
 });
-

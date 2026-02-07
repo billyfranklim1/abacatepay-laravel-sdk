@@ -40,8 +40,8 @@ test('pode criar um saque', function () {
             'account' => '12345678',
             'account_type' => AccountType::CHECKING,
             'holder_name' => 'João da Silva',
-            'holder_document' => '12345678900'
-        ])
+            'holder_document' => '12345678900',
+        ]),
     ]);
 
     $createdWithdrawal = $withdrawalClient->create($withdrawal);
@@ -77,10 +77,10 @@ test('lança exceção quando bank account não é fornecida', function () {
     $withdrawalClient = new WithdrawalClient('test_token', $mockClient);
 
     $withdrawal = new Withdrawal([
-        'amount' => 10000
+        'amount' => 10000,
     ]);
 
-    expect(fn() => $withdrawalClient->create($withdrawal))
+    expect(fn () => $withdrawalClient->create($withdrawal))
         ->toThrow(\InvalidArgumentException::class, 'Bank account is required');
 });
 
@@ -88,7 +88,6 @@ test('lança exceção quando a API retorna erro', function () {
     $mockClient = createErrorResponseClient(400, 'Invalid request');
     $withdrawalClient = new WithdrawalClient('test_token', $mockClient);
 
-    expect(fn() => $withdrawalClient->list())
+    expect(fn () => $withdrawalClient->list())
         ->toThrow(ApiException::class, 'AbacatePay API Error');
 });
-

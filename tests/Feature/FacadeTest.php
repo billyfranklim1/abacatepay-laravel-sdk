@@ -1,8 +1,8 @@
 <?php
 
-use Billyfranklim\AbacatePay\Facades\AbacatePay;
 use Billyfranklim\AbacatePay\Clients\BillingClient;
 use Billyfranklim\AbacatePay\Clients\CustomerClient;
+use Billyfranklim\AbacatePay\Facades\AbacatePay;
 
 test('facade retorna instância de BillingClient', function () {
     config()->set('abacatepay.token', 'test_token');
@@ -35,4 +35,3 @@ test('facade retorna novas instâncias a cada chamada', function () {
         ->and($billing2)
         ->toBeInstanceOf(BillingClient::class);
 });
-

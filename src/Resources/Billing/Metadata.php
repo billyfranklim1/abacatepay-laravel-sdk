@@ -7,7 +7,9 @@ use Billyfranklim\AbacatePay\Resources\Resource;
 class Metadata extends Resource
 {
     public ?int $fee;
+
     public ?string $return_url;
+
     public ?string $completion_url;
 
     public function __construct(array $data)
@@ -15,4 +17,3 @@ class Metadata extends Resource
         $this->__fill($this, $data);
     }
 }
-

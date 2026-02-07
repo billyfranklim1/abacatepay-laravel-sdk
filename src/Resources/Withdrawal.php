@@ -9,12 +9,19 @@ use DateTime;
 class Withdrawal extends Resource
 {
     public ?string $id;
+
     public ?int $amount;
+
     public ?Status $status;
+
     public ?bool $dev_mode;
+
     public ?BankAccount $bank_account;
+
     public ?DateTime $created_at;
+
     public ?DateTime $updated_at;
+
     public ?DateTime $processed_at;
 
     public function __construct(array $data)
@@ -28,7 +35,7 @@ class Withdrawal extends Resource
     {
         $name = $this->__camelToSnakeCase($name);
 
-        if (!property_exists($this, $name)) {
+        if (! property_exists($this, $name)) {
             return;
         }
 
@@ -55,4 +62,3 @@ class Withdrawal extends Resource
         }
     }
 }
-

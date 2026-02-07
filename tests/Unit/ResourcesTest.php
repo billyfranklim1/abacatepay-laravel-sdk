@@ -24,7 +24,7 @@ test('billing resource inicializa corretamente com dados da API', function () {
         'metadata' => [
             'fee' => 100,
             'returnUrl' => 'https://example.com/return',
-            'completionUrl' => 'https://example.com/completion'
+            'completionUrl' => 'https://example.com/completion',
         ],
         'products' => [
             [
@@ -33,8 +33,8 @@ test('billing resource inicializa corretamente com dados da API', function () {
                 'name' => 'Produto',
                 'description' => 'Descrição',
                 'quantity' => 1,
-                'price' => 10000
-            ]
+                'price' => 10000,
+            ],
         ],
         'customer' => [
             'id' => 'cust_123',
@@ -42,9 +42,9 @@ test('billing resource inicializa corretamente com dados da API', function () {
                 'name' => 'Cliente',
                 'email' => 'cliente@example.com',
                 'cellphone' => '01912341234',
-                'taxId' => '12345678900'
-            ]
-        ]
+                'taxId' => '12345678900',
+            ],
+        ],
     ];
 
     $billing = new Billing($data);
@@ -84,8 +84,8 @@ test('customer resource inicializa corretamente com dados da API', function () {
             'name' => 'João Silva',
             'email' => 'joao@example.com',
             'cellphone' => '01912341234',
-            'taxId' => '12345678900'
-        ]
+            'taxId' => '12345678900',
+        ],
     ];
 
     $customer = new Customer($data);
@@ -111,7 +111,7 @@ test('product resource inicializa corretamente', function () {
         'name' => 'Produto Teste',
         'description' => 'Descrição do produto',
         'quantity' => 2,
-        'price' => 5000
+        'price' => 5000,
     ];
 
     $product = new Product($data);
@@ -129,4 +129,3 @@ test('product resource inicializa corretamente', function () {
         ->and($product->price)
         ->toBe(5000);
 });
-

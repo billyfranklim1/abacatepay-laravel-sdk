@@ -14,8 +14,8 @@ test('store get chama endpoint correto', function () {
     $handler = new MockHandler([
         new Response(200, [], json_encode([
             'error' => null,
-            'data' => ['id' => 'store_123']
-        ]))
+            'data' => ['id' => 'store_123'],
+        ])),
     ]);
 
     $handlerStack = HandlerStack::create($handler);
@@ -23,6 +23,7 @@ test('store get chama endpoint correto', function () {
         return function (RequestInterface $request, array $options) use ($handler, &$requestUri, &$requestMethod) {
             $requestMethod = $request->getMethod();
             $requestUri = (string) $request->getUri();
+
             return $handler($request, $options);
         };
     });
@@ -35,4 +36,3 @@ test('store get chama endpoint correto', function () {
     expect($requestMethod)->toBe('GET')
         ->and($requestUri)->toContain('get');
 });
-

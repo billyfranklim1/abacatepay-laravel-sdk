@@ -9,4 +9,3 @@ class ApiException extends AbacatePayException
         parent::__construct("AbacatePay API Error: {$message}", $code, $previous);
     }
 }
-

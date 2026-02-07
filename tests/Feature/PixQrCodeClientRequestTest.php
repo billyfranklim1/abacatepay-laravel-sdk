@@ -15,8 +15,8 @@ test('pixQrCode create envia parâmetros corretos', function () {
     $handler = new MockHandler([
         new Response(200, [], json_encode([
             'error' => null,
-            'data' => ['id' => 'pix_123']
-        ]))
+            'data' => ['id' => 'pix_123'],
+        ])),
     ]);
 
     $handlerStack = HandlerStack::create($handler);
@@ -25,6 +25,7 @@ test('pixQrCode create envia parâmetros corretos', function () {
             $requestMethod = $request->getMethod();
             $requestUri = (string) $request->getUri();
             $requestBody = json_decode($request->getBody()->getContents(), true);
+
             return $handler($request, $options);
         };
     });
@@ -55,8 +56,8 @@ test('pixQrCode check chama endpoint correto com query parameter', function () {
     $handler = new MockHandler([
         new Response(200, [], json_encode([
             'error' => null,
-            'data' => ['id' => 'pix_123']
-        ]))
+            'data' => ['id' => 'pix_123'],
+        ])),
     ]);
 
     $handlerStack = HandlerStack::create($handler);
@@ -64,6 +65,7 @@ test('pixQrCode check chama endpoint correto com query parameter', function () {
         return function (RequestInterface $request, array $options) use ($handler, &$requestUri, &$requestMethod) {
             $requestMethod = $request->getMethod();
             $requestUri = (string) $request->getUri();
+
             return $handler($request, $options);
         };
     });
@@ -85,8 +87,8 @@ test('pixQrCode simulatePayment envia parâmetros corretos', function () {
     $handler = new MockHandler([
         new Response(200, [], json_encode([
             'error' => null,
-            'data' => ['id' => 'pix_123']
-        ]))
+            'data' => ['id' => 'pix_123'],
+        ])),
     ]);
 
     $handlerStack = HandlerStack::create($handler);
@@ -94,6 +96,7 @@ test('pixQrCode simulatePayment envia parâmetros corretos', function () {
         return function (RequestInterface $request, array $options) use ($handler, &$requestBody, &$requestUri) {
             $requestUri = (string) $request->getUri();
             $requestBody = json_decode($request->getBody()->getContents(), true);
+
             return $handler($request, $options);
         };
     });
@@ -109,4 +112,3 @@ test('pixQrCode simulatePayment envia parâmetros corretos', function () {
         ->and($requestBody)->toHaveKey('metadata')
         ->and($requestBody['metadata'])->toBe($metadata);
 });
-

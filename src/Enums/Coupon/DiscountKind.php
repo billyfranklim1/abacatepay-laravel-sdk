@@ -4,7 +4,6 @@ namespace Billyfranklim\AbacatePay\Enums\Coupon;
 
 enum DiscountKind: string
 {
-    case PERCENTAGE = "PERCENTAGE";
-    case FIXED = "FIXED";
+    case PERCENTAGE = 'PERCENTAGE';
+    case FIXED = 'FIXED';
 }
-

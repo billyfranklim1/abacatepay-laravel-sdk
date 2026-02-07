@@ -10,7 +10,7 @@ test('pode criar QR Code PIX', function () {
     $pixQrCode = $pixClient->create([
         'amount' => 10000,
         'expires_in' => 3600,
-        'description' => 'Pagamento via PIX'
+        'description' => 'Pagamento via PIX',
     ]);
 
     expect($pixQrCode)
@@ -40,4 +40,3 @@ test('pode simular pagamento do QR Code PIX', function () {
     expect($pixQrCode)
         ->toBeInstanceOf(PixQrCode::class);
 });
-

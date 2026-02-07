@@ -14,19 +14,20 @@ class BillingClient extends Client
     {
         parent::__construct(self::URI, $token, $client);
     }
-    
+
     public function list(): array
     {
-        $response = $this->request("GET", "list");
-        return array_map(fn($data) => new Billing($data), $response);
+        $response = $this->request('GET', 'list');
+
+        return array_map(fn ($data) => new Billing($data), $response);
     }
 
     public function create(Billing $data): Billing
     {
         $requestData = $this->buildRequestData($data);
 
-        $response = $this->request("POST", "create", [
-            'json' => $requestData
+        $response = $this->request('POST', 'create', [
+            'json' => $requestData,
         ]);
 
         return new Billing($response);
@@ -37,8 +38,8 @@ class BillingClient extends Client
         $requestData = $this->buildRequestData($data);
         $requestData['frequency'] = Frequencies::MULTIPLE_PAYMENTS->value;
 
-        $response = $this->request("POST", "create", [
-            'json' => $requestData
+        $response = $this->request('POST', 'create', [
+            'json' => $requestData,
         ]);
 
         return new Billing($response);
@@ -46,14 +47,15 @@ class BillingClient extends Client
 
     public function get(string $billingId): Billing
     {
-        $response = $this->request("GET", "get?id={$billingId}");
+        $response = $this->request('GET', "get?id={$billingId}");
+
         return new Billing($response);
     }
 
     protected function buildRequestData(Billing $data): array
     {
         $methodsArray = [];
-        if (!empty($data->methods) && is_array($data->methods)) {
+        if (! empty($data->methods) && is_array($data->methods)) {
             foreach ($data->methods as $method) {
                 if ($method instanceof \BackedEnum) {
                     $methodsArray[] = $method->value;
@@ -68,12 +70,12 @@ class BillingClient extends Client
             'returnUrl' => $data->metadata?->return_url,
             'completionUrl' => $data->metadata?->completion_url,
             'products' => array_map(
-                fn($product) => [
+                fn ($product) => [
                     'externalId' => $product->external_id ?? null,
                     'name' => $product->name,
                     'description' => $product->description ?? '',
                     'quantity' => $product->quantity,
-                    'price' => $product->price
+                    'price' => $product->price,
                 ],
                 $data->products ?? []
             ),
@@ -91,7 +93,7 @@ class BillingClient extends Client
                     'name' => $data->customer->metadata->name,
                     'email' => $data->customer->metadata->email,
                     'cellphone' => $data->customer->metadata->cellphone,
-                    'taxId' => $data->customer->metadata->tax_id
+                    'taxId' => $data->customer->metadata->tax_id,
                 ];
             }
         }

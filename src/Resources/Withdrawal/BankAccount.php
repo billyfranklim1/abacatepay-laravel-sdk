@@ -8,10 +8,15 @@ use Billyfranklim\AbacatePay\Resources\Resource;
 class BankAccount extends Resource
 {
     public ?string $bank_code;
+
     public ?string $agency;
+
     public ?string $account;
+
     public ?AccountType $account_type;
+
     public ?string $holder_name;
+
     public ?string $holder_document;
 
     public function __construct(array $data)
@@ -25,7 +30,7 @@ class BankAccount extends Resource
     {
         $name = $this->__camelToSnakeCase($name);
 
-        if (!property_exists($this, $name)) {
+        if (! property_exists($this, $name)) {
             return;
         }
 
@@ -46,4 +51,3 @@ class BankAccount extends Resource
         }
     }
 }
-

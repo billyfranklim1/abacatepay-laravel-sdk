@@ -7,10 +7,15 @@ use Billyfranklim\AbacatePay\Resources\Resource;
 class Product extends Resource
 {
     public ?string $external_id;
+
     public ?string $product_id;
+
     public ?string $name;
+
     public ?string $description;
+
     public ?int $quantity;
+
     public ?int $price;
 
     public function __construct(array $data)
@@ -18,4 +23,3 @@ class Product extends Resource
         $this->__fill($this, $data);
     }
 }
-

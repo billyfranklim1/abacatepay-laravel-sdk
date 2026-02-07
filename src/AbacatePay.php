@@ -13,8 +13,7 @@ class AbacatePay
 {
     public function __construct(
         protected readonly string $token
-    ) {
-    }
+    ) {}
 
     public function billing(): BillingClient
     {
@@ -46,4 +45,3 @@ class AbacatePay
         return new StoreClient($this->token);
     }
 }
-

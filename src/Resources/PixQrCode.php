@@ -3,21 +3,30 @@
 namespace Billyfranklim\AbacatePay\Resources;
 
 use Billyfranklim\AbacatePay\Enums\Billing\Statuses;
-use Billyfranklim\AbacatePay\Resources\Customer;
 use DateTime;
 
 class PixQrCode extends Resource
 {
     public ?string $id;
+
     public ?int $amount;
+
     public ?Statuses $status;
+
     public ?bool $dev_mode;
+
     public ?string $br_code;
+
     public ?string $br_code_base64;
+
     public ?int $platform_fee;
+
     public ?DateTime $created_at;
+
     public ?DateTime $updated_at;
+
     public ?DateTime $expires_at;
+
     public ?Customer $customer;
 
     public function __construct(array $data)
@@ -31,7 +40,7 @@ class PixQrCode extends Resource
     {
         $name = $this->__camelToSnakeCase($name);
 
-        if (!property_exists($this, $name)) {
+        if (! property_exists($this, $name)) {
             return;
         }
 
@@ -58,4 +67,3 @@ class PixQrCode extends Resource
         }
     }
 }
-

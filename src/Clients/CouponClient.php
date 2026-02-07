@@ -13,11 +13,12 @@ class CouponClient extends Client
     {
         parent::__construct(self::URI, $token, $client);
     }
-    
+
     public function list(): array
     {
-        $response = $this->request("GET", "list");
-        return array_map(fn($data) => new Coupon($data), $response);
+        $response = $this->request('GET', 'list');
+
+        return array_map(fn ($data) => new Coupon($data), $response);
     }
 
     public function create(Coupon $data): Coupon
@@ -40,11 +41,10 @@ class CouponClient extends Client
             $requestData['metadata'] = $data->metadata;
         }
 
-        $response = $this->request("POST", "create", [
-            'json' => $requestData
+        $response = $this->request('POST', 'create', [
+            'json' => $requestData,
         ]);
 
         return new Coupon($response);
     }
 }
-

@@ -28,7 +28,6 @@ test('lança exceção quando a API retorna erro', function () {
     $mockClient = createErrorResponseClient(400, 'Invalid request');
     $storeClient = new StoreClient('test_token', $mockClient);
 
-    expect(fn() => $storeClient->get())
+    expect(fn () => $storeClient->get())
         ->toThrow(ApiException::class, 'AbacatePay API Error');
 });
-
